@@ -1102,13 +1102,13 @@
   #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
-  #define X_CURRENT          600  // rms current in mA. Multiply by 1.41 for peak current.
+  #define X_CURRENT          760  // rms current in mA. Multiply by 1.41 for peak current.
   #define X_MICROSTEPS        16  // 0..256
 
-  #define Y_CURRENT          600
+  #define Y_CURRENT          760
   #define Y_MICROSTEPS        16
 
-  #define Z_CURRENT          600
+  #define Z_CURRENT          760
   #define Z_MICROSTEPS        16
 
   #define X2_CURRENT         800
@@ -1184,7 +1184,7 @@
   #define Y2_HYBRID_THRESHOLD    100
   #define Z_HYBRID_THRESHOLD       3
   #define Z2_HYBRID_THRESHOLD      3
-  #define E0_HYBRID_THRESHOLD     0
+  #define E0_HYBRID_THRESHOLD      1
   #define E1_HYBRID_THRESHOLD     30
   #define E2_HYBRID_THRESHOLD     30
   #define E3_HYBRID_THRESHOLD     30
@@ -1205,8 +1205,8 @@
   #define SENSORLESS_HOMING // TMC2130 only
 
   #if ENABLED(SENSORLESS_HOMING)
-    #define X_HOMING_SENSITIVITY  10
-    #define Y_HOMING_SENSITIVITY  12
+    #define X_HOMING_SENSITIVITY  8
+    #define Y_HOMING_SENSITIVITY  8
   #endif
 
   /**
@@ -1243,7 +1243,7 @@
    *   stepperY.interpolate(0); \
    * }
    */
-  #define TMC_ADV() {  }
+  #define TMC_ADV() { stepperE0.stealthChop(0); }
 
 #endif // TMC2130 || TMC2208
 
